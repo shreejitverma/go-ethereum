@@ -33,11 +33,11 @@ class PipeTransport(ServerTransport):
 
     def receive_message(self):
         data = self.input.readline()
-        print(">> {}".format( data))
+        print(f">> {data}")
         return None, urlparse.unquote(data)
 
     def send_reply(self, context, reply):
-        print("<< {}".format( reply))
+        print(f"<< {reply}")
         self.output.write(reply)
         self.output.write("\n")
 
@@ -160,7 +160,7 @@ def main(args):
     cmd = ["clef", "--stdio-ui"]
     if len(args) > 0 and args[0] == "test":
         cmd.extend(["--stdio-ui-test"])
-    print("cmd: {}".format(" ".join(cmd)))
+    print(f'cmd: {" ".join(cmd)}')
     dispatcher = RPCDispatcher()
     dispatcher.register_instance(StdIOHandler(), '')
     # line buffered
